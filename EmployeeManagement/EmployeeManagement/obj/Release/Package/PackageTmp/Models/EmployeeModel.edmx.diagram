@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cd9fe01c3eb444d1a33763a1d72a013e" Name="Diagram1">
+        <EntityTypeShape EntityType="EmployeeModel.Employee" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmployeeModel.Payroll" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmployeeModel.Role" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmployeeModel.User" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <AssociationConnector Association="EmployeeModel.FK__Employee__UserId__3B40CD36" ManuallyRouted="false" />
+        <AssociationConnector Association="EmployeeModel.FK__Payroll__UserId__531856C7" ManuallyRouted="false" />
+        <AssociationConnector Association="EmployeeModel.FK__Role__UserID__160F4887" ManuallyRouted="false" />
+        <AssociationConnector Association="EmployeeModel.FK__Role__UserID__3A4CA8FD" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

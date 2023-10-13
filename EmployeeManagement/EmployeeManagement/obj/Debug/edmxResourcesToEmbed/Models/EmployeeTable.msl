@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EmployeeModelStoreContainer" CdmEntityContainer="EmployeeTable">
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="EmployeeModel.Employee">
+        <MappingFragment StoreEntitySet="Employee">
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="Fname" ColumnName="Fname" />
+          <ScalarProperty Name="Lname" ColumnName="Lname" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Nalicense" ColumnName="Nalicense" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Payrolls">
+      <EntityTypeMapping TypeName="EmployeeModel.Payroll">
+        <MappingFragment StoreEntitySet="Payroll">
+          <ScalarProperty Name="PayrollID" ColumnName="PayrollID" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="Fname" ColumnName="Fname" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Daily_Salary" ColumnName="Daily_Salary" />
+          <ScalarProperty Name="Annul_salary" ColumnName="Annul_salary" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="salary" FunctionName="EmployeeModel.Store.salary" />
+    <FunctionImportMapping FunctionImportName="GetSalary" FunctionName="EmployeeModel.Store.salary" />
+    <FunctionImportMapping FunctionImportName="GetAllSalary" FunctionName="EmployeeModel.Store.salary" />
+    <FunctionImportMapping FunctionImportName="totalPay" FunctionName="EmployeeModel.Store.totalPay">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EmployeeModel.totalPay_Result">
+          <ScalarProperty Name="totalPay" ColumnName="totalPay" />
+          <ScalarProperty Name="Fname" ColumnName="Fname" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetTotalPay" FunctionName="EmployeeModel.Store.totalPay" />
+  </EntityContainerMapping>
+</Mapping>

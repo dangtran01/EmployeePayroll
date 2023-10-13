@@ -1,0 +1,93 @@
+﻿@model IEnumerable<EmployeeManagement.Models.User>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<style>
+    .label1 {
+        font-size: 36px;
+        color: chocolate;
+        font-family: Arial;
+        font-weight: bold;
+        display: block;
+    }
+
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        border: 1px solid black;
+        overflow: hidden;
+        background: white;
+        border-radius: 6px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        opacity: 1;
+        background: transparent;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        font-weight: bold;
+        padding: 13px;
+        border-bottom: 1px solid #dddddd;
+    }
+
+
+    body {
+        height: 100%;
+    }
+
+    body {
+        margin: 0;
+        background: linear-gradient(45deg, #49a09d, #5f2c82);
+        font-family: sans-serif;
+        font-weight: 100;
+    }
+</style>
+
+<p>
+
+
+    @Html.Label("Employee", new { @class = "label1" })
+
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
+</p>
+
+<div class="table-responsive">
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Username)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Username)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Password)
+                </td>
+
+                <td>
+
+
+                    @Html.ActionLink("Edit", "Edit", new { id = item.UserId }, new { @class = "btn btn-warning" }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.UserId }, new { @class = "btn btn-success" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.UserId }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>

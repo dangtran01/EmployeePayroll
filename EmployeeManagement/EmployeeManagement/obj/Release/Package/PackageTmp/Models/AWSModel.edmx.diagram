@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8d86c475ac3b4bf494021c923bd57a6a" Name="Diagram1">
+        <EntityTypeShape EntityType="AwsModel.Employee" Width="1.5" PointX="2.375" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AwsModel.Payroll" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AwsModel.Role" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AwsModel.User" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
+        <AssociationConnector Association="AwsModel.FK__Payroll__Employe__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="AwsModel.FK_Employee_User" ManuallyRouted="false" />
+        <AssociationConnector Association="AwsModel.FK_Employee1_Employee1" ManuallyRouted="false" />
+        <AssociationConnector Association="AwsModel.FK_Payroll_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="AwsModel.FK__Payroll__UserId__531856C7" ManuallyRouted="false" />
+        <AssociationConnector Association="AwsModel.FK__Role__UserID__3D5E1FD2" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

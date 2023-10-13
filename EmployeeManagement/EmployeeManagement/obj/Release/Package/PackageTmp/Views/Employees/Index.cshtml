@@ -1,0 +1,121 @@
+﻿@model IEnumerable<EmployeeManagement.Models.Employee>
+
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<style>
+    .label1 {
+        font-size: 36px;
+        color: chocolate;
+        font-family: Arial;
+        font-weight: bold;
+        display: block;
+
+    }
+
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        border: 1px solid black;
+        overflow: hidden;
+        background: white;
+        border-radius: 6px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        opacity: 1;
+        background: transparent;
+
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+       font-weight: bold;
+        padding: 13px;
+        border-bottom: 1px solid #dddddd;
+
+
+    }
+     
+
+    body {
+        height: 100%;
+    }
+
+    body {
+        margin: 0;
+        background: linear-gradient(45deg, #49a09d, #5f2c82);
+        font-family: sans-serif;
+        font-weight: 100;
+    }
+
+
+
+
+</style>
+
+<p>
+
+
+    @Html.Label("Employee", new { @class = "label1" })
+
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
+</p>
+<br />
+<div class="table-responsive">
+    <table class="table" style="overflow-x:auto;">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EmployeeID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nalicense)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmployeeID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Lname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nalicense)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.EmployeeID }, new { @class = "btn btn-warning" }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.EmployeeID }, new { @class = "btn btn-default" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.EmployeeID }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+
+    </table>
+    </div>

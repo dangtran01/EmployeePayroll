@@ -1,0 +1,175 @@
+﻿@using EmployeeManagement.Models;
+
+@model dynamic
+@{
+
+    ViewBag.Title = "Index";
+}
+
+<!DOCTYPE html>
+<style>
+    .label1 {
+        font-size: 36px;
+        color: chocolate;
+        font-family: Arial;
+        font-weight: bold;
+        display: block;
+    }
+
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        border: 1px solid black;
+        overflow: hidden;
+        background: white;
+        border-radius: 6px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        opacity: 1;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        font-weight: bold;
+        padding: 13px;
+        border-bottom: 1px solid #dddddd;
+    }
+
+
+    body {
+        height: 100%;
+    }
+
+    body {
+        margin: 0;
+        background: linear-gradient(45deg, #49a09d, #5f2c82);
+        font-family: sans-serif;
+        font-weight: 100;
+    }
+
+    .form-horizontal {
+        border-radius: 6px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        opacity: 1;
+        background: transparent;
+        padding: 13px;
+        font-weight: bold;
+    }
+    .no-color {
+        font-size: 23px;
+        color: chocolate;
+        font-family: Arial;
+        font-weight: bold;
+        display: block;
+    }
+</style>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+
+<br />
+<br />
+
+
+    @using (Html.BeginForm("Index", "Record", FormMethod.Post))
+    {
+        <div class="form-horizontal">
+            <span>Start Date</span>
+            <input required type="date" name="Start" /> <hr />
+            <span>End Date</span>
+            <input required type="date" name="End" /><hr />
+            <input required type="submit" value="GetRecord" />
+
+        </div>
+
+
+    }
+
+
+
+<body>
+    <p>
+        @Html.ActionLink("Create New", "NewRecord", null, new { @class = "btn btn-primary" })
+    </p>
+    <div class="table-responsive">
+
+        <table class="table table-bordered table-responsive table-hover" cellpadding="0" cellspacing="0">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>License</th>
+                <th></th>
+
+            </tr>
+            @foreach (EmployeeRecord re in Model.record)
+            {
+                <tr>
+                  
+                    <td>
+                        @Html.DisplayFor(modelItem => re.Fname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => re.Lname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => re.Phone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => re.Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => re.Nalicense)
+                    </td>
+                </tr>
+            }
+        </table>
+        <hr />
+
+        <table class="table table-bordered table-responsive table-hover" cellpadding="0" cellspacing="0">
+            <tr>
+                <th>EmployeeID</th>
+                <th>First Name</th>
+                <th>Date</th>
+                <th>Daily Salary</th>
+                <th>Comission</th>
+                <th></th>
+
+            </tr>
+            @foreach (PayrollRecord re in Model.record2)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => re.EmployeeID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => re.Fname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => re.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => re.Daily_Salary)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => re.Annul_salary)
+                    </td>
+                </tr>
+            }
+        </table>
+        @{
+            var p = ViewBag.PayrollRecord;
+        }
+
+        <div class="no-color" >
+            TotalPay : $@p.totalPay
+        </div>
+      </div>
+
+
+</body>
+</html>

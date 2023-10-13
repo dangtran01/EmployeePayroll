@@ -1,0 +1,93 @@
+﻿@model EmployeeManagement.Models.Employee
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<style>
+    .label1 {
+        font-size: 36px;
+        color: chocolate;
+        font-family: Arial;
+        font-weight: bold;
+        display: block;
+    }
+
+    .dl-horizontal {
+        margin: 1em 0;
+        min-width: 300px;
+        border: 3px double #ccc;
+        padding: 0.5em;
+        background-color: lightblue;
+    }
+    tr {
+        border-top: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+    }
+    dt {
+        float: left;
+        clear: left;
+        width: 100px;
+        text-align: right;
+        font-weight: bold;
+        color: green;
+    }
+  
+</style>
+
+<p>
+
+    @Html.Label("Detail", new { @class = "label1" })
+
+</p>
+
+<div>
+    <h4>Employee</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Fname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nalicense)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nalicense)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EmployeeID }, new { @class = "btn btn-warning" }) |
+    @Html.ActionLink("Back to List", "Index", new { @class = "btn btn-success" })
+</p>

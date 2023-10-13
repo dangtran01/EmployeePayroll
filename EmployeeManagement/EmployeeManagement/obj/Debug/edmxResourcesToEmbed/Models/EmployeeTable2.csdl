@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EmployeeTable2" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+    </Key>
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Fname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Lname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Nalicense" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Payrolls" Relationship="EmployeeTable2.FK__Payroll__Employe__3D2915A8" FromRole="Employee" ToRole="Payroll" />
+    <NavigationProperty Name="User" Relationship="EmployeeTable2.FK__Employee__UserId__3B40CD36" FromRole="Employee" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Payroll">
+    <Key>
+      <PropertyRef Name="PayrollID" />
+    </Key>
+    <Property Name="PayrollID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+    <Property Name="Fname" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Daily_Salary" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Annul_salary" Type="Decimal" Precision="20" Scale="1" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Employee" Relationship="EmployeeTable2.FK__Payroll__Employe__3D2915A8" FromRole="Payroll" ToRole="Employee" />
+    <NavigationProperty Name="User" Relationship="EmployeeTable2.FK__Payroll__UserId__531856C7" FromRole="Payroll" ToRole="User" />
+  </EntityType>
+  <EntityContainer Name="EmployeeEntities4" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Employees" EntityType="Self.Employee" />
+    <EntitySet Name="Payrolls" EntityType="Self.Payroll" />
+    <FunctionImport Name="salary" ReturnType="Collection(EmployeeTable2.salary_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetAllSalary" EntitySet="Payrolls" ReturnType="Collection(EmployeeTable2.Payroll)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetSalary" ReturnType="Collection(EmployeeTable2.GetSalary_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetSalary2" EntitySet="Payrolls" ReturnType="Collection(EmployeeTable2.Payroll)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="Roles" EntityType="EmployeeTable2.Role" />
+    <AssociationSet Name="FK__Payroll__Employe__3D2915A8" Association="EmployeeTable2.FK__Payroll__Employe__3D2915A8">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Payroll" EntitySet="Payrolls" />
+    </AssociationSet>
+    <EntitySet Name="Users" EntityType="EmployeeTable2.User" />
+    <AssociationSet Name="FK__Employee__UserId__3B40CD36" Association="EmployeeTable2.FK__Employee__UserId__3B40CD36">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Payroll__UserId__531856C7" Association="EmployeeTable2.FK__Payroll__UserId__531856C7">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Payroll" EntitySet="Payrolls" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Role__UserID__160F4887" Association="EmployeeTable2.FK__Role__UserID__160F4887">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Role" EntitySet="Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Role__UserID__3A4CA8FD" Association="EmployeeTable2.FK__Role__UserID__3A4CA8FD">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Role" EntitySet="Roles" />
+    </AssociationSet>
+    <FunctionImport Name="EmpInfo" ReturnType="Collection(EmployeeTable2.EmpInfo_Result)">
+      <Parameter Name="name" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="EmpRecord" EntitySet="Employees" ReturnType="Collection(EmployeeTable2.Employee)">
+      <Parameter Name="name" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="totalPay2" ReturnType="Collection(Double)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="salary_Result">
+    <Property Type="Int32" Name="PayrollID" Nullable="false" />
+    <Property Type="Int32" Name="EmployeeID" Nullable="false" />
+    <Property Type="String" Name="Fname" Nullable="false" MaxLength="30" />
+    <Property Type="DateTime" Name="Date" Nullable="false" />
+    <Property Type="Decimal" Name="Daily_Salary" Nullable="false" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="Annul_salary" Nullable="true" Precision="20" Scale="1" />
+  </ComplexType>
+  <ComplexType Name="totalPay_Result">
+    <Property Type="Decimal" Name="totalPay" Nullable="true" Precision="38" Scale="1" />
+    <Property Type="String" Name="Fname" Nullable="false" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="GetSalary_Result">
+    <Property Type="Int32" Name="PayrollID" Nullable="false" />
+    <Property Type="Int32" Name="EmployeeID" Nullable="false" />
+    <Property Type="String" Name="Fname" Nullable="false" MaxLength="30" />
+    <Property Type="DateTime" Name="Date" Nullable="false" />
+    <Property Type="Decimal" Name="Daily_Salary" Nullable="false" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="Annul_salary" Nullable="true" Precision="20" Scale="1" />
+    <Property Type="Decimal" Name="totalPay" Nullable="true" Precision="38" Scale="1" />
+  </ComplexType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="Role1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="User" Relationship="EmployeeTable2.FK__Role__UserID__160F4887" FromRole="Role" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="EmployeeTable2.FK__Role__UserID__3A4CA8FD" FromRole="Role" ToRole="User" />
+  </EntityType>
+  <Association Name="FK__Payroll__Employe__3D2915A8">
+    <End Type="EmployeeTable2.Employee" Role="Employee" Multiplicity="1" />
+    <End Type="EmployeeTable2.Payroll" Role="Payroll" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmployeeID" />
+      </Principal>
+      <Dependent Role="Payroll">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="UnHashPassword" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Employees" Relationship="EmployeeTable2.FK__Employee__UserId__3B40CD36" FromRole="User" ToRole="Employee" />
+    <NavigationProperty Name="Payrolls" Relationship="EmployeeTable2.FK__Payroll__UserId__531856C7" FromRole="User" ToRole="Payroll" />
+    <NavigationProperty Name="Roles" Relationship="EmployeeTable2.FK__Role__UserID__160F4887" FromRole="User" ToRole="Role" />
+    <NavigationProperty Name="Roles1" Relationship="EmployeeTable2.FK__Role__UserID__3A4CA8FD" FromRole="User" ToRole="Role" />
+  </EntityType>
+  <Association Name="FK__Employee__UserId__3B40CD36">
+    <End Type="EmployeeTable2.User" Role="User" Multiplicity="1" />
+    <End Type="EmployeeTable2.Employee" Role="Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Payroll__UserId__531856C7">
+    <End Type="EmployeeTable2.User" Role="User" Multiplicity="1" />
+    <End Type="EmployeeTable2.Payroll" Role="Payroll" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Payroll">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Role__UserID__160F4887">
+    <End Type="EmployeeTable2.User" Role="User" Multiplicity="0..1" />
+    <End Type="EmployeeTable2.Role" Role="Role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Role">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Role__UserID__3A4CA8FD">
+    <End Type="EmployeeTable2.User" Role="User" Multiplicity="0..1" />
+    <End Type="EmployeeTable2.Role" Role="Role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Role">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="EmpInfo_Result">
+    <Property Type="Int32" Name="EmployeeID" Nullable="false" />
+    <Property Type="String" Name="Fname" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Lname" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Phone" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Address" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Nalicense" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="UserId" Nullable="false" />
+  </ComplexType>
+</Schema>

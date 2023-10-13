@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html>
+
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>@ViewBag.Title - Tony's Employee Management System'</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+  
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (User.IsInRole("Owner"))
+                        {
+
+                            <li><a href=""> Dear @User.Identity.Name</a></li>
+                            <li>@Html.ActionLink("EmployeeView", "Index", "Employees")</li>
+                            <li>@Html.ActionLink("PayRoll", "Index", "Payrolls1")</li>
+                            <li>@Html.ActionLink("User", "Index", "Users")</li>
+                            <li>@Html.ActionLink("Role", "Index", "Roles")</li>
+
+
+                            <strong>@Html.Encode(User.Identity.Name)</strong>
+                            <li>@Html.ActionLink("Log off", "Logout", "Login")</li>
+
+                        }
+                        else if (User.IsInRole("User"))
+
+                        {
+                            <li>@Html.ActionLink("Record", "Index", "Record")</li>
+                            <li>@Html.ActionLink("Log off", "Logout", "Login")</li>
+
+
+                        }
+
+                    }
+
+                    else
+                    {
+                        <li>@Html.ActionLink("Index", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Login", "Login", "Login")</li>
+
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Tony's Salon System</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
